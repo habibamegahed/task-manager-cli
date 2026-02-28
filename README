@@ -1,0 +1,6 @@
+echo "# Task Manager CLI" > README.md
+echo "A colorful Bash task manager" >> README.md
+git add tasks_manager.sh README.md
+git commit -m "first commit: task manager CLI"
+git remote add origin https://github.com/username/task-manager-cli.git
+git push -u origin master
