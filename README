@@ -1,175 +1,57 @@
-Task Manager - Docker Project
+Task Manager CLI
 
-A simple Task Manager web application** built with Flask and containerized using Docker.  
-This project demonstrates how to run a multi-service application using **Docker Compose**, including a web server, database, cache, and load balancer.
+Project Reference
 
----
+Project Name: Task Manager CLI
+Type: Command Line Application
+Language: Bash (Shell Scripting)
+Platform: Linux / Ubuntu
+Version Control: Git & GitHub
+Containerization: Docker (nginx:alpine)
 
- Overview
+Description
+Task Manager CLI is an interactive terminal-based application built entirely with Bash scripting.
+It allows users to manage their daily tasks from the command line with a clean, color-coded interface.
+All data is stored locally in a plain text file using a pipe-separated format.
 
-The application allows users to add and view tasks through a simple web interface and REST API.
+Core Features
 
-The system architecture includes:
+Add tasks with title, priority (high / medium / low), and due date
+List all tasks or filter by status or priority
+Update any field of an existing task (title, priority, due date, status)
+Delete tasks with a confirmation step
+Search tasks using regular expressions
+Display a summary showing count of pending, in-progress, and done tasks
+Detect and list overdue tasks automatically based on today's date
+Generate a priority report grouped by high, medium, and low
+Export all tasks to a CSV file
+Sort tasks by priority or due date
 
-- **Flask** for the backend application
-- **Gunicorn** as the production server
-- **Nginx** as a reverse proxy and load balancer
-- **PostgreSQL** for storing tasks
-- **Redis** for caching
-- **Docker Compose** to orchestrate all services
 
----
+Task Fields
+FieldAccepted ValuesPriorityhigh / medium / lowStatuspending / in-progress / doneDue DateYYYY-MM-DD
 
- System Architecture
+Color System
+ColorMeaningRedHigh priorityYellowMedium priorityGreenLow priority / DoneCyanPending / HeadersBlueDue dates
 
-```
-Client
-  |
-  v
-Nginx (Reverse Proxy / Load Balancer)
-  |               |
-  v               v
-Flask App 1    Flask App 2
-      \           /
-       \         /
-        PostgreSQL
-             |
-           Redis
-```
+Data Storage
+Tasks are saved in a file called tasks.txt using this format:
+ID | Title | Priority | Due Date | Status
+Example:
+1|Buy groceries|high|2026-03-10|pending
+2|Fix bug|medium|2026-11-30|in-progress
+3|Read book|low|2026-03-15|done
 
-This setup simulates a **scalable production-like environment**.
+How to Run
+git clone https://github.com/habibamegahed/task-manager-cli.git
+cd task-manager-cli
+chmod +x task_manager.sh
+bash task_manager.sh
+Run with Docker
+docker build -t task-manager .
+docker run -it task-manager
 
----
-
- Technologies Used
-
-- Python (Flask)
-- Gunicorn
-- Nginx
-- PostgreSQL
-- Redis
-- Docker
-- Docker Compose
-- Bash / Linux
-
----
-
- Project Structure
-
-```
-taskmanager
-│
-├── docker-compose.yml
-├── Dockerfile
-├── flask_app.py
-├── requirements.txt
-├── init.sql
-│
-├── conf
-│   └── nginx.conf
-│
-├── ssl
-│   └── generate_ssl.sh
-│
-└── static
-    └── style.css
-```
-
----
-
- How to Run the Project
-
- Clone the repository
-
-```bash
-git clone https://github.com/habibamegahed/taskmanager.git
-cd taskmanager
-```
-
- Generate SSL certificate
-
-```bash
-cd ssl
-chmod +x generate_ssl.sh
-./generate_ssl.sh
-cd ..
-```
-
- Start the containers
-
-```bash
-docker compose up --build
-```
-
----
-
- Access the Application
-
-Open your browser and go to:
-
-```
-http://localhost
-```
-
-or
-
-```
-https://localhost
-```
-
----
-
- API Endpoints
-
-**Get all tasks**
-
-```
-GET /api/tasks
-```
-
-Add new task
-
-```
-POST /api/tasks
-```
-
-Example request body:
-
-```json
-{
-  "title": "Learn Docker",
-  "priority": "high"
-}
-```
-
-**Health Check**
-
-```
-GET /api/health
-```
-
----
-
- Learning Outcomes
-
-Through this project I practiced:
-
-- Building containerized applications
-- Using Docker Compose for service orchestration
-- Configuring Nginx as a reverse proxy
-- Load balancing between multiple containers
-- Integrating PostgreSQL and Redis
-- Implementing HTTPS using self-signed SSL certificates
-
----
-
- Author
-
+Author
 Habiba Megahed
-
-GitHub:  
-https://github.com/habibamegahed
-
- 🏷️ Tags
-
-Docker • DevOps • Flask • Nginx • PostgreSQL • Redis • Containerization
+GitHub: https://github.com/habibamegahed
+Repository: https://github.com/habibamegahed/task-manager-cli
